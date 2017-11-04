@@ -27,7 +27,6 @@ public class PlayState extends State {
         cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);
         bird = new Bird(50, 300);
         bg = new Texture("bg.png");
-
         tubes = new Array<Tube>();
 
         for (int i = 1; i <= TUBE_COUNT; i++) {
@@ -50,6 +49,8 @@ public class PlayState extends State {
             if (cam.position.x - (cam.viewportWidth / 2) > tube.getPosTopTube().x + tube.getTopTube().getWidth()) {
                 tube.reposition(tube.getPosTopTube().x + (Tube.TUBE_WIDTH + TUBE_SPACING) * TUBE_COUNT);
             }
+            if (tube.collides(bird.getBounds()))
+                gsm.set(new PlayState(gsm));
         }
         cam.update();
     }
