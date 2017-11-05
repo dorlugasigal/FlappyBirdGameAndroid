@@ -15,9 +15,9 @@ import javax.xml.soap.Text;
  * Created by Dor Lugasi on 11/4/2017.
  */
 
-public class Bird {
+public class Character {
     private static final int GRAVITY = -15;
-    private static final int MOVEMENT = 100;
+    private static final int MOVEMENT = 110;
     private Vector3 position;
     private Vector3 velocity;
     private Rectangle bounds;
@@ -26,10 +26,10 @@ public class Bird {
     private Sound flap;
 
 
-    public Bird(int x, int y) {
+    public Character(int x, int y) {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0, 0);
-        texture = new Texture("bennyanimation.png");
+        texture = new Texture("birdanimationblue.png");
         birdAnimation = new Animation(new TextureRegion(texture), 3, 0.5f);
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight());
         flap= Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
@@ -71,8 +71,8 @@ public class Bird {
     }
     public float getRotation() {
         if (velocity.y >= 45)
-            return 30F;
-        if (velocity.y < -45)
+            return 20F;
+        if (velocity.y < -25)
             return -10F;
         return velocity.y;
     }

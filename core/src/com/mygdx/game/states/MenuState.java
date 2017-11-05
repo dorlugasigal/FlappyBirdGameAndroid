@@ -33,7 +33,7 @@ public class MenuState extends State {
     @Override
     protected void handleInput() {
         if (Gdx.input.justTouched()) {
-            Vector3 tmp = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
+            Vector3 tmp = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
             cam.unproject(tmp);
             Rectangle textureBounds = new Rectangle(cam.position.x - playBtn.getWidth() / 2, cam.position.y, playBtn.getWidth(), playBtn.getHeight());
             if (textureBounds.contains(tmp.x, tmp.y)) {

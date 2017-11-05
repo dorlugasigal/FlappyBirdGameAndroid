@@ -12,7 +12,7 @@ import com.mygdx.game.states.MenuState;
 public class FlappyBird extends ApplicationAdapter {
     public static final int WIDTH = 480;
     public static final int HEIGHT = 800;
-    public static final String TITLE = "Flappy Bird";
+    public static final String TITLE = "Flappy Character";
     private GameStateManager gsm;
     private SpriteBatch batch;
     private Music music;
