@@ -10,6 +10,8 @@ import java.util.Stack;
 
 public class GameStateManager {
     private Stack<State> states;
+    private String characterPath="birdanimationblue.png";
+
 
     public GameStateManager() {
         states = new Stack<State>();
@@ -35,4 +37,14 @@ public class GameStateManager {
     public void render(SpriteBatch sb) {
         states.peek().render(sb);
     }
+
+    public String getCharacterPath() {
+        return characterPath;
+    }
+
+    public void setCharacterPath(String characterPath) {
+        this.characterPath = characterPath;
+    }
+
+
 }

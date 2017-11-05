@@ -15,24 +15,25 @@ import javax.xml.soap.Text;
  * Created by Dor Lugasi on 11/4/2017.
  */
 
-public class Character {
+public class Charac {
     private static final int GRAVITY = -15;
     private static final int MOVEMENT = 110;
-    private Vector3 position;
-    private Vector3 velocity;
+    private Vector3 position, velocity;
     private Rectangle bounds;
     private Animation birdAnimation;
     private Texture texture;
     private Sound flap;
+    private boolean statue;
 
 
-    public Character(int x, int y) {
+    public Charac(int x, int y, String path, boolean statue) {
+        this.statue = statue;
         position = new Vector3(x, y, 0);
         velocity = new Vector3(0, 0, 0);
-        texture = new Texture("birdanimationblue.png");
+        texture = new Texture(path);
         birdAnimation = new Animation(new TextureRegion(texture), 3, 0.5f);
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight());
-        flap= Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
+        flap = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
     }
 
     public Vector3 getPosition() {
@@ -45,15 +46,18 @@ public class Character {
 
     public void update(float dt) {
         birdAnimation.update(dt);
-        if (position.y > 0)
-            velocity.add(0, GRAVITY, 0);
-        velocity.scl(dt);
-        position.add(MOVEMENT * dt, velocity.y, 0);
-        if (position.y < 0)
-            position.y = 0;
-        if (dt>0)
-            velocity.scl(1 / dt);
-        bounds.setPosition(position.x, position.y);
+        if (!statue) {
+            if (position.y > 0)
+                velocity.add(0, GRAVITY, 0);
+            velocity.scl(dt);
+            position.add(MOVEMENT * dt, velocity.y, 0);
+            if (position.y < 0)
+                position.y = 0;
+            if (dt > 0)
+                velocity.scl(1 / dt);
+            bounds.setPosition(position.x, position.y);
+        }
+
     }
 
     public Rectangle getBounds() {
@@ -69,6 +73,7 @@ public class Character {
         texture.dispose();
         flap.dispose();
     }
+
     public float getRotation() {
         if (velocity.y >= 45)
             return 20F;

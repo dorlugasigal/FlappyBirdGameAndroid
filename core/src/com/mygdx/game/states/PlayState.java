@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.FlappyBird;
-import com.mygdx.game.sprites.Character;
+import com.mygdx.game.sprites.Charac;
 import com.mygdx.game.sprites.Tube;
 
 /**
@@ -18,7 +18,7 @@ public class PlayState extends State {
     private static final int TUBE_COUNT = 4;
     private static final int GROUND_Y_OFFSET = -50;
 
-    private Character bird;
+    private Charac bird;
     private Texture bg;
     private Texture ground;
     private Array<Tube> tubes;
@@ -30,7 +30,7 @@ public class PlayState extends State {
     public PlayState(GameStateManager gsm) {
         super(gsm);
         cam.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);
-        bird = new Character(50, 300);
+        bird = new Charac(50, 300 ,gsm.getCharacterPath(),false);
         bg = new Texture("bg.png");
         ground = new Texture("ground.png");
         groundPos1 = new Vector2(cam.position.x - cam.viewportWidth / 2, GROUND_Y_OFFSET);
